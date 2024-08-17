@@ -1,0 +1,173 @@
+{% extends 'base_main.html' %}
+{% load static %}
+{% block content %}
+
+
+    <!--====== SEARCH BOX PART START ======-->
+    
+    <div class="search-box">
+        <div class="serach-form">
+            <div class="closebtn">
+                <span></span>
+                <span></span>
+            </div>
+            <form action="#">
+                <input type="text" placeholder="Search by keyword">
+                <button><i class="fa fa-search"></i></button>
+            </form>
+        </div> <!-- serach form -->
+    </div>
+    
+    <!--====== SEARCH BOX PART ENDS ======-->
+   
+    <!--====== PAGE BANNER PART START ======-->
+    
+    <section id="page-banner"   >
+        {% comment %} <div class="container"> {% endcomment %}
+            <!-- Carousel Section within Page Banner --> 
+            <div id="bookCarousel" class="carousel slide mt-5" data-bs-ride="carousel">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img src="{% static 'edulook/images/slider/1.jpg' %}" class="d-block w-100 img-fluid" alt="First slide">
+                
+                </div>
+                <div class="carousel-item">
+                  <img src="{% static 'edulook/images/slider/2.jpg' %}" class="d-block w-100 img-fluid" alt="Second slide">
+                
+                </div>
+                <div class="carousel-item">
+                  <img src="{% static 'edulook/images/slider/3.jpg' %}" class="d-block w-100 img-fluid" alt="Third slide">
+                  {% comment %} <div class="carousel-caption d-none d-md-block">
+                    <h5>Featured Book 3</h5>
+                    <p>Don’t miss out on this popular book.</p>
+                    <a href="https://wa.me/c/260762446629" class="btn btn-primary">Buy Now</a>
+                  </div> {% endcomment %}
+                </div>
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#bookCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#bookCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+        </div> 
+    </div> <!-- container -->
+    </section>
+    
+    <!--====== PAGE BANNER PART ENDS ======-->
+   
+    <!--====== SHOP PART START ======-->
+    
+    <section id="shop-page" class="pt-120 pb-120 gray-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    {% comment %} <div class="shop-top-search">
+                        <div class="shop-bar">
+                            <ul class="nav" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="active" id="shop-grid-tab" data-toggle="tab" href="#shop-grid" role="tab" aria-controls="shop-grid" aria-selected="true"><i class="fa fa-th-large"></i></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a id="shop-list-tab" data-toggle="tab" href="#shop-list" role="tab" aria-controls="shop-list" aria-selected="false"><i class="fa fa-th-list"></i></a>
+                                </li>
+                                <li class="nav-item">Showning 4 0f 24 Results</li>
+                            </ul> <!-- nav -->
+                        </div><!-- shop bar -->
+                        <div class="shop-select">
+                           <select>
+                                <option value="1">Sort by</option>
+                                <option value="1">Sort by 01</option>
+                                <option value="2">Sort by 02</option>
+                                <option value="3">Sort by 03</option>
+                                <option value="4">Sort by 04</option>
+                                <option value="5">Sort by 05</option>
+                            </select>
+                        </div> <!-- shop select -->
+                    </div> <!-- shop top search --> {% endcomment %}
+                </div>
+            </div> <!-- row -->
+            <div class="tab-content" id="myTabContent">
+              <div class="tab-pane fade show active" id="shop-grid" role="tabpanel" aria-labelledby="shop-grid-tab">
+                    <div class="row justify-content-center">
+                        {% for book in page_obj %}
+                        <div class="col-lg-3 col-md-6 col-sm-8">
+                            <div class="singel-publication mt-30">
+                                <div class="image">
+                                    <img src="{{ book.cover_image.url }}" alt="Publication">
+                                    <div class="add-cart">
+                                        <ul>
+                                            <li><a href="#"><i class="bi bi-book-fill"></i></a></li>
+                                            <li><a href="#"><i class="bi bi-cash-coin"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="cont">
+                                    <div class="name">
+                                        <a href="shop-singel.html"><h6>{{ book.title }}</h6></a>
+                                        <span>K{{ book.price }}</span>
+                                    </div>
+                                    <div class="button text-right">
+                                        <a href="https://wa.me/c/260762446629" class="main-btn">Buy Now</a>
+                                    </div>
+                                </div>
+                            </div> <!-- singel publication -->
+                        </div>
+                        {% endfor %}
+                        
+                    </div> <!-- row -->
+                </div>
+               
+            <!-- Pagination Section -->
+        <div class="row" style="text-align: center;">
+            <div class="col-lg-12">
+              <nav class="courses-pagination mt-50" style="display: flex; justify-content: center;">
+                <ul class="pagination" style="list-style: none; padding: 0; margin: 0; display: flex; gap: 5px;">
+                  <!-- Previous Page Links -->
+                  {% if page_obj.has_previous %}
+                    <li class="page-item" style="display: inline;">
+                      <a class="page-link" href="?page=1" aria-label="First" style="border-radius: 0; color: #007bff; text-decoration: none; padding: 0.5em 1em;">
+                        <i class="bi bi-chevron-double-left" aria-hidden="true"></i>
+                      </a>
+                    </li>
+                    <li class="page-item" style="display: inline;">
+                      <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous" style="border-radius: 0; color: #007bff; text-decoration: none; padding: 0.5em 1em;">
+                        <i class="bi bi-chevron-left" aria-hidden="true"></i>
+                      </a>
+                    </li>
+                  {% endif %}
+  
+                  <!-- Page Number Links -->
+                  {% for num in page_obj.paginator.page_range %}
+                    <li class="page-item" style="display: inline;">
+                      <a class="page-link" href="?page={{ num }}" style="border-radius: 0; color: #007bff; text-decoration: none; padding: 0.5em 1em; {% if page_obj.number == num %}background-color: #007bff; color: #fff;{% endif %}">
+                        {{ num }}
+                      </a>
+                    </li>
+                  {% endfor %}
+  
+                  <!-- Next Page Links -->
+                  {% if page_obj.has_next %}
+                    <li class="page-item" style="display: inline;">
+                      <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next" style="border-radius: 0; color: #007bff; text-decoration: none; padding: 0.5em 1em;">
+                        <i class="bi bi-chevron-right" aria-hidden="true"></i>
+                      </a>
+                    </li>
+                    <li class="page-item" style="display: inline;">
+                      <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}" aria-label="Last" style="border-radius: 0; color: #007bff; text-decoration: none; padding: 0.5em 1em;">
+                        <i class="bi bi-chevron-double-right" aria-hidden="true"></i>
+                      </a>
+                    </li>
+                  {% endif %}
+                </ul>
+              </nav> <!-- courses pagination -->
+            </div>
+          </div> <!-- row -->
+        </div> <!-- container -->
+    </section>
+    
+    <!--====== COURSES PART ENDS ======-->
+
+{% endblock %}

@@ -1,0 +1,12 @@
+1. allocating main directory
+cd ~/Keresengineering
+
+2.activating virtual environment
+source myenv/bin/activate
+
+
+
+installing MYSQL Database
+
+1.pip install mysqlclient
+

@@ -1,0 +1,464 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+   
+    <!--====== Required meta tags ======-->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!--====== Title ======-->
+    <title>Keres Engineering</title>
+    
+    <!--====== Favicon Icon ======-->
+    <link rel="shortcut icon" href="images/favicon.png" type="image/png">
+
+    <!--====== Slick css ======-->
+    <link rel="stylesheet" href="{% static 'edulook/css/slick.css' %}">
+
+    <!--====== Animate css ======-->
+    <link rel="stylesheet" href="{% static 'edulook/css/animate.css' %}">
+    
+    <!--====== Nice Select css ======-->
+    <link rel="stylesheet" href="{% static 'edulook/css/nice-select.css' %}">
+    
+    <!--====== Nice Number css ======-->
+    <link rel="stylesheet" href="{% static 'edulook/css/jquery.nice-number.min.css' %}">
+
+    <!--====== Magnific Popup css ======-->
+    <link rel="stylesheet" href="{% static 'edulook/css/magnific-popup.css' %}">
+
+    <!--====== Bootstrap css ======-->
+    <link rel="stylesheet" href="{% static 'edulook/css/bootstrap.min.css' %}">
+    
+    <!--====== Fontawesome css ======-->
+    <link rel="stylesheet" href="{% static 'edulook/css/font-awesome.min.css' %}">
+    
+    <!--====== Default css ======-->
+    <link rel="stylesheet" href="{% static 'edulook/css/default.css' %}">
+    
+    <!--====== Style css ======-->
+    <link rel="stylesheet" href="{% static 'edulook/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'edulook/css/bootstrap-icons.css' %}">
+
+    
+    <!--====== Responsive css ======-->
+    <link rel="stylesheet" href="{% static 'edulook/css/responsive.css' %}">
+    <link rel="stylesheet" href="{% static 'accordion/css/style.css' %}">
+
+    <link href="{% static 'accordion/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'accordion/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'accordion/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+
+<body>
+   
+    <!--====== PRELOADER PART START ======-->
+    
+    {% comment %} <div class="preloader">
+        <div class="loader rubix-cube">
+            <div class="layer layer-1"></div>
+            <div class="layer layer-2"></div>
+            <div class="layer layer-3 color-1"></div>
+            <div class="layer layer-4"></div>
+            <div class="layer layer-5"></div>
+            <div class="layer layer-6"></div>
+            <div class="layer layer-7"></div>
+            <div class="layer layer-8"></div>
+        </div>
+    </div>
+     {% endcomment %}
+    <!--====== PRELOADER PART START ======-->
+    
+    <!--====== HEADER PART START ======-->
+    
+    <header id="header-part">
+
+       <div class="header-logo-support pt-30 pb-30" style="background: #2d71a1; background: linear-gradient(-45deg, #1391a5, #274685); color: #fff; box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.15);">
+          <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4">
+                        <div class="logo">
+                            <a href="{% url 'index' %}">
+                              <img src="{% static 'assets/img/logo.png' %}" alt="Logo" style="height:70px; width:100px;">
+
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-md-8">
+                        <div class="support-button float-right d-none d-md-block">
+                            <div class="support float-left">
+                               
+                                
+                                {% comment %} <div class="cont">
+                                    <p>Need Help? call us free</p>
+                                    <span>321 325 5678</span>
+                                </div> {% endcomment %}
+                            </div>
+
+                      
+                            {% comment %} {% if not user.is_authenticated %}
+                            <li><a class="btn btn-primary" href="{% url 'login_user' %}">Login</a></li>
+                            {% else %}
+                  
+                            {% if is_Index %}
+                            <li><a class="btn btn-primary"  href='main/dashboard/home'>Dashboard</a></li>
+                      
+                            {% endif %}
+                            {% endif %} {% endcomment %}
+
+
+                            
+                            {% if not user.is_authenticated %}
+                            <div class="button float-left">
+                                <a href="{% url 'login_user' %}" class="main-btn" style=" text-decoration:none;">Login</a>
+                            </div>
+
+                            {% else %}
+                            {% if is_Index %}
+                            <div class="button float-left">
+                                <a class="btn btn-sm btn-warning" href="{% url 'logout_user' %}">Logout</a> &nbsp;
+
+                                <a href='dashboard/homedash' class="main-btn" style=" text-decoration:none;">Dashboard</a>
+                            </div>
+                            {% endif %}
+                            {% endif %}
+                           
+                            
+                            {% comment %} <div class="button float-left">
+                                <a href="#" class="main-btn" style=" text-decoration:none;">Apply Now</a>
+                            </div> {% endcomment %}
+
+
+
+
+                        </div>
+                    </div>
+                </div> <!-- row -->
+            </div> <!-- container -->
+        </div> <!-- header logo support --> 
+        
+        <div class="navigation" style="background: #2d71a1; background: linear-gradient(-45deg, #1391a5, #274685); color: #fff; box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.15);">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-10 col-md-10 col-sm-9 col-8">
+                        <nav class="navbar navbar-expand-lg">
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+
+                            <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+                                <ul class="navbar-nav mr-auto">
+                                  <li class="nav-item">
+                                    <a class="btn"   href="{% url 'index' %}">Home</a>&nbsp;
+                                </li>
+                                <li class="nav-item">
+                                    <a class="btn"  href="{% url 'about' %}">About us</a>&nbsp;
+                                </li>
+                                <li class="nav-item">
+                                    <a class="btn"  href="{% url 'school' %}">Courses</a> &nbsp;
+                                </li>
+                                <li class="nav-item">
+                                    <a class="btn"  href="{% url 'services' %}">Services</a> &nbsp;
+                                </li>
+                                <li class="nav-item">&nbsp;
+                                    <a class="btn"  href="{% url 'ebook' %}">Books</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="btn"  href="{% url 'home' %}">Blog</a>&nbsp;
+                                </li>
+                                <li class="nav-item">
+                                    <a class="btn"  href="{% url 'contact' %}">Contact Us</a> &nbsp;
+                                </li>
+
+                                {% if not user.is_authenticated %}
+                                <li class="nav-item">
+                                    <a class="btn" href="{% url 'login_user' %}">Login</a> &nbsp;
+                                </li>
+
+                                {% else %}
+                                {% if is_Index %}
+                                <li class="nav-item">
+                                    {% comment %} <a  class="active" href="{% url 'homedash' %}"style="color:white; text-decoration:none;">Dashboad</a>  {% endcomment %}
+                                     <a class="btn" href="{% url 'logout_user' %}">Logout</a> &nbsp;
+                               
+                                </li>
+                                {% endif %}
+                                {% endif %}
+                               
+
+
+                                    {% comment %} <li class="nav-item">
+                                        <a href="contact.html">Contact</a>
+                                        <ul class="sub-menu">
+                                            <li><a href="contact.html">Contact Us</a></li>
+                                            <li><a href="contact-2.html">Contact Us 2</a></li>
+                                        </ul>
+                                    </li> {% endcomment %}
+                                </ul>
+                            </div>
+
+                            <div class="col-lg-2 col-md-2 col-sm-3 col-4">
+                              <div class="right-icon text-right">
+                                <div class="logo">
+                                    {% comment %} <img src="{% static 'edulook/images/favicon.png' %}" alt="Logo"> {% endcomment %}
+                                </div> 
+                              </div> <!-- right icon -->
+                          </div>
+                        </nav> <!-- nav -->
+                    </div>
+                </div> <!-- row -->
+            </div> <!-- container -->
+        </div>
+        
+    </header>
+    
+{% block content %}
+{% endblock %}
+   
+    <!--====== FOOTER PART START ======-->
+    
+    <footer id="footer-part" style="background: #2d71a1; background: linear-gradient(-45deg, #1391a5, #274685); color: #fff; box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.15);">
+        <div class="footer-top pt-40 pb-70">
+            <div class="container">
+                <div class="row">
+                    {% comment %} <div class="col-lg-4 col-md-6">
+                        <div class="footer-about mt-40">
+                            <div class="logo">
+                                <a href="{% url 'index' %}"> <img src="{% static 'assets/img/logo.png' %}" alt="Logo" style="height:60px; width:100px;"></a>
+                            </div>
+                            <p style="text-align: left;">Keres Engineering and Appliance Technology (KEAT) is a Zambian registered engineering company, established under Act No. 16 of 2011 of the Laws of Zambia.</p>
+
+                            <ul class="mt-20">
+                                <li><a href="https://www.facebook.com/profile.php?id=100083548771407"><i class="fa fa-facebook-f"></i></a></li>
+                                <li><a href="https://wa.me/c/260762446629"><i class="fa fa-whatsapp"></i></a></li>
+                                
+                                 </p>
+                            </ul>
+                        </div> <!-- footer about -->
+                    </div> {% endcomment %}
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="footer-link mt-40">
+                            <div class="footer-title pb-25">
+                                <h6  style="color:  #fb7349;">Sitemap</h6>
+                            </div>
+                            <ul>
+                              <li><a style="text-decoration:none;" href="{% url 'school' %}">Courses</a></li>
+                              <li><a style="text-decoration:none;" href="{% url 'home' %}">Blog</a></li>
+                              <li><a style="text-decoration:none;" href="{% url 'about' %}">About Us</a></li>
+                              <li><a style="text-decoration:none;" href="{% url 'contact' %}">Contact Us</a></li>
+                          
+                            </ul>
+                           
+                        </div> <!-- footer link -->
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="footer-link support mt-40">
+                            <div class="footer-title pb-25">
+                                <h6  style="color:  #fb7349;">Support</h6>
+                            </div>
+                            <ul>
+                              <li ><a style="text-decoration:none;" href="#">Careers</a></li>
+                              <li><a  style="text-decoration:none;"href="{% url 'terms' %}">Terms & Conditions</a></li>
+                              <li><a  style="text-decoration:none;"href="{% url 'faq' %}">FAQ</a></li>
+                              <li><a  style="text-decoration:none;"href="{% url 'pp' %}">Privacy policy</a></li>
+                            </ul>
+                        </div> <!-- support -->
+                    </div>
+
+                    
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-address mt-40">
+                            <div class="footer-title pb-25">
+                                <h6  style="color:  #fb7349;">Subscribe for News</h6>
+                            </div>
+                           
+                              <ul class="list-unstyled">
+                                <form action="" method="post">
+                                  <input type="email" name="email" style="border-radius:60px; height:40px;">
+                                  <br>
+                                  <br>
+                                  <input class="main-btn"  type="submit" Value="Submit" style="text-decoration:none; background: #2d71a1; background: linear-gradient(-45deg, #1391a5, #274685); color: #fff; box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.15);">
+                                </form>
+                              </ul>
+                            
+                          </div>
+                        </div> <!-- footer address -->
+                    </div>
+                </div> <!-- row -->
+            </div> <!-- container -->
+        </div> <!-- footer top -->
+        
+        <div class="footer-copyright pt-10 pb-25">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                     
+                        <div class="copyright text-md-left text-center pt-15">
+                          <p class="copyright">&copy; Copyright <a  class="btn"  href="{% url 'index' %}"  style="color:  #ffc600;">KeresEngineering.</a> All Rights Reserved</p>
+                          <div class="credits">
+                           
+                            <p >Powered By <a  class="btn"  href="https://sevier0810.pythonanywhere.com"  style="color:  #ffc600;">footprints graphixx</a></p>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="copyright text-md-right text-center pt-15">
+                           
+                        </div>
+                    </div>
+                </div> <!-- row -->
+            </div> <!-- container -->
+        </div> <!-- footer copyright -->
+    </footer>
+    {% comment %} <footer id="footer-part" style="background: #2d71a1; background: linear-gradient(-45deg, #1391a5, #274685); color: #fff; box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.15);">
+        <div class="footer-top pt-40 pb-70">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="footer-about mt-40">
+                            <div class="logo">
+                                <a href="{% url 'index' %}"> <img src="{% static 'assets/img/logo.png' %}" alt="Logo" style="height:60px; width:100px;"></a>
+                            </div>
+                            <p style="text-align: left;">Keres Engineering and Appliance Technology (KEAT) is a Zambian registered engineering company, established under Act No. 16 of 2011 of the Laws of Zambia.</p>
+
+                            <ul class="mt-20">
+                                <li><a href="https://www.facebook.com/profile.php?id=100083548771407"><i class="fa fa-facebook-f"></i></a></li>
+                                <li><a href="https://wa.me/c/260762446629"><i class="fa fa-whatsapp"></i></a></li>
+                                
+                                 </p>
+                            </ul>
+                        </div> <!-- footer about -->
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="footer-link mt-40">
+                            <div class="footer-title pb-25">
+                                <h6  style="color:  #fb7349;">Sitemap</h6>
+                            </div>
+                            <ul>
+                              <li><a style="text-decoration:none;" href="{% url 'school' %}">Courses</a></li>
+                              <li><a style="text-decoration:none;" href="{% url 'home' %}">Blog</a></li>
+                              <li><a style="text-decoration:none;" href="{% url 'about' %}">About Us</a></li>
+                              <li><a style="text-decoration:none;" href="{% url 'contact' %}">Contact Us</a></li>
+                          
+                            </ul>
+                           
+                        </div> <!-- footer link -->
+                    </div>
+                    <div class="col-lg-2 col-md-6 col-sm-6">
+                        <div class="footer-link support mt-40">
+                            <div class="footer-title pb-25">
+                                <h6  style="color:  #fb7349;">Support</h6>
+                            </div>
+                            <ul>
+                              <li ><a style="text-decoration:none;" href="#">Careers</a></li>
+                              <li><a  style="text-decoration:none;"href="{% url 'terms' %}">Terms & Conditions</a></li>
+                              <li><a  style="text-decoration:none;"href="{% url 'faq' %}">FAQ</a></li>
+                              <li><a  style="text-decoration:none;"href="{% url 'pp' %}">Privacy policy</a></li>
+                            </ul>
+                        </div> <!-- support -->
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-address mt-40">
+                            <div class="footer-title pb-25">
+                                <h6  style="color:  #fb7349;">Subscribe for News</h6>
+                            </div>
+                           
+                              <ul class="list-unstyled">
+                                <form action="" method="post">
+                                  <input type="email" name="email" style="border-radius:60px; height:40px;">
+                                  <br>
+                                  <br>
+                                  <input class="main-btn"  type="submit" Value="Submit" style="text-decoration:none; background: #2d71a1; background: linear-gradient(-45deg, #1391a5, #274685); color: #fff; box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.15);">
+                                </form>
+                              </ul>
+                            
+                          </div>
+                        </div> <!-- footer address -->
+                    </div>
+                </div> <!-- row -->
+            </div> <!-- container -->
+        </div> <!-- footer top -->
+        
+        <div class="footer-copyright pt-10 pb-25">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                     
+                        <div class="copyright text-md-left text-center pt-15">
+                          <p class="copyright">&copy; Copyright <a href=""  style="color:  #ffc600;">KeresEngineering.</a> All Rights Reserved</p>
+                          <div class="credits">
+                           
+                            <p >Powered By <a href="https://sevier0810.pythonanywhere.com"  style="color:  #ffc600;">footprints graphixx</a></p>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="copyright text-md-right text-center pt-15">
+                           
+                        </div>
+                    </div>
+                </div> <!-- row -->
+            </div> <!-- container -->
+        </div> <!-- footer copyright -->
+    </footer> {% endcomment %}
+    
+    <!--====== FOOTER PART ENDS ======-->
+   
+    <!--====== BACK TO TP PART START ======-->
+    
+    <a href="#" class="back-to-top" style="background: #2d71a1; background: linear-gradient(-45deg, #1391a5, #274685); color: #fff; box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.15);"><i class="bi bi-arrow-up"></i></a>
+    
+    <!--====== BACK TO TP PART ENDS ======-->
+   
+    
+    
+    {% block extra_js %}
+    {% endblock %}
+    
+    <!--====== jquery js ======-->
+    <script src="{% static 'edulook/js/vendor/modernizr-3.6.0.min.js' %}"></script>
+    <script src="{% static 'edulook/js/vendor/jquery-1.12.4.min.js' %}"></script>
+
+    <!--====== Bootstrap js ======-->
+    <script src="{% static 'edulook/js/bootstrap.min.js' %}"></script>
+    
+    <!--====== Slick js ======-->
+    <script src="{% static 'edulook/js/slick.min.js' %}"></script>
+    
+    <!--====== Magnific Popup js ======-->
+    <script src="{% static 'edulook/js/jquery.magnific-popup.min.js' %}"></script>
+    
+    <!--====== Counter Up js ======-->
+    <script src="{% static 'edulook/js/waypoints.min.js' %}"></script>
+    <script src="{% static 'edulook/js/jquery.counterup.min.js' %}"></script>
+    
+    <!--====== Nice Select js ======-->
+    <script src="{% static 'edulook/js/jquery.nice-select.min.js' %}"></script>
+    
+    <!--====== Nice Number js ======-->
+    <script src="{% static 'edulook/js/jquery.nice-number.min.js' %}"></script>
+    
+    <!--====== Count Down js ======-->
+    <script src="js/jquery.countdown.min.js' %}"></script>
+    
+    <!--====== Validator js ======-->
+    <script src="{% static 'edulook/js/validator.min.js' %}"></script>
+    
+    <!--====== Main js ======-->
+    <script src="{% static 'edulook/js/main.js' %}"></script>
+    <script src="{% static 'accordion/js/main.js' %}"></script>
+    <script src="{% static 'accordion/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <!--====== Map js ======-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDC3Ip9iVC0nIxC6V14CKLQ1HZNF_65qEQ"></script>
+    <script src="js/map-script.js' %}"></script>
+
+
+</body>
+</html>

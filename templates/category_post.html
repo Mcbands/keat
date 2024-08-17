@@ -1,0 +1,197 @@
+{% extends 'base_main.html' %}
+{% load static %}
+{% block content %}
+
+
+
+{% comment %} 
+<section id="page-banner" class="pt-105 pb-130 bg_cover" data-overlay="8" style="background-image: url(images/page-banner-4.jpg)">
+  <div class="container">
+      <div class="row">
+          <div class="col-lg-12">
+              <div class="page-banner-cont">
+                {% for post in searched_posts %}
+                  <h2>{{post.title}}</h2>
+                  <nav aria-label="breadcrumb">
+                      <ol class="breadcrumb">
+                          <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+                          <li class="breadcrumb-item"><a href="{% url 'home' %}">Blog</a></li>
+                          <li class="breadcrumb-item active" aria-current="page">{{post.title}}</li>
+                      </ol>
+                  </nav>
+                  {% endfor %}
+              </div>  <!-- page banner cont -->
+          </div>
+      </div> <!-- row -->
+  </div> <!-- container -->
+</section> {% endcomment %}
+
+
+    <section id="blog-page" class="pt-90 pb-120 gray-bg">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8">
+            {% comment %} <h1 data-aos="fade-up" data-aos-delay="" class="text-uppercase text-warning" style="letter-spacing: 2px;">category - {{category}}</h1> {% endcomment %}
+
+            <h2> <i class="bi bi-tags"></i> Category - {{category}}</h2><br>
+            {% comment %} <main role="main" class="container p-0"> {% endcomment %}
+              <div class="row mb-2">
+      
+                {% for post in blogs %}
+                <div class="col-md-6">
+                  <img src="{{ post.featured_image.url }}" alt="Blog">
+                     
+                  <div class="card border-0" >
+                    <div class="card-body">
+                      <h3><a style="text=decoration:none;" href="{% url 'post_by_slug' post.slug %}" style="color:black">{{post.title|truncatewords_html:7 }}</a></h3><br>
+                      {% comment %} <small class="mb-1 text-muted"> <i class="bi bi-calendar3"></i> {{post.created_at | timesince}} ago <br> <i class="bi bi-person"></i> by {{post.author}}</small> {% endcomment %}
+                      
+                      <li><i class="bi bi-calendar3"></i>{{ post.created_at|timesince }} ago</li>
+                      <li><i class="bi bi-person"></i>{{ post.author }}</li>
+                      <li><i class="bi bi-tags"></i>{{ post.category }}</li>
+                      <p class="card-text">{{post.short_description | truncatewords:20}}</p>
+
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+              
+                <h2> No Posts in this Category  </h2>
+              </div>
+           
+
+            <!-- Pagination Section -->
+            <div class="row" style="text-align: center;">
+              <div class="col-lg-12">
+                <nav class="courses-pagination mt-50" style="display: flex; justify-content: center;">
+                  <ul class="pagination" style="list-style: none; padding: 0; margin: 0; display: flex; gap: 5px;">
+                    <!-- Previous Page Links -->
+                    {% if page_obj.has_previous %}
+                      <li class="page-item" style="display: inline;">
+                        <a class="page-link" href="?page=1" aria-label="First" style="border-radius: 0; color: #007bff; text-decoration: none; padding: 0.5em 1em;">
+                          <i class="bi bi-chevron-double-left" aria-hidden="true"></i>
+                        </a>
+                      </li>
+                      <li class="page-item" style="display: inline;">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous" style="border-radius: 0; color: #007bff; text-decoration: none; padding: 0.5em 1em;">
+                          <i class="bi bi-chevron-left" aria-hidden="true"></i>
+                        </a>
+                      </li>
+                    {% endif %}
+    
+                    <!-- Page Number Links -->
+                    {% for num in page_obj.paginator.page_range %}
+                      <li class="page-item" style="display: inline;">
+                        <a class="page-link" href="?page={{ num }}" style="border-radius: 0; color: #007bff; text-decoration: none; padding: 0.5em 1em; {% if page_obj.number == num %}background-color: #007bff; color: #fff;{% endif %}">
+                          {{ num }}
+                        </a>
+                      </li>
+                    {% endfor %}
+    
+                    <!-- Next Page Links -->
+                    {% if page_obj.has_next %}
+                      <li class="page-item" style="display: inline;">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next" style="border-radius: 0; color: #007bff; text-decoration: none; padding: 0.5em 1em;">
+                          <i class="bi bi-chevron-right" aria-hidden="true"></i>
+                        </a>
+                      </li>
+                      <li class="page-item" style="display: inline;">
+                        <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}" aria-label="Last" style="border-radius: 0; color: #007bff; text-decoration: none; padding: 0.5em 1em;">
+                          <i class="bi bi-chevron-double-right" aria-hidden="true"></i>
+                        </a>
+                      </li>
+                    {% endif %}
+                  </ul>
+                </nav> <!-- courses pagination -->
+              </div>
+            </div> <!-- row -->
+          </div>
+    
+          <div class="col-lg-4">
+            <div class="saidbar">
+              <div class="row">
+                <div class="col-lg-12 col-md-6">
+                  <div class="saidbar-search mt-30">
+                    <form action="{% url 'search_category' %}" method="GET">
+                      <input class="form-control" name="keyword" type="text" placeholder="Search">
+                      <button type="submit"><i class="bi bi-search"></i></button>
+                    </form>
+                  </div> <!-- saidbar search -->
+    
+                  <div class="categories mt-30">
+                    <h4>Categories</h4>
+                    {% for tag in tags %}
+                      <ul>
+                        <li><a href="{% url 'post_by_category' tag.id %}">{{ tag.name }}</a></li> 
+                      </ul>
+                    {% endfor %}
+                  </div> <!-- categories -->
+    
+                </div> <!-- col -->
+              </div> <!-- row -->
+            </div> <!-- saidbar -->
+          </div> <!-- col -->
+        </div> <!-- row -->
+      </div> <!-- container -->
+    </section>
+    
+    <!--====== BLOG PART ENDS ======-->
+
+
+{% comment %} 
+<!-- ======= Blog Section ======= -->
+<section class="hero-section inner-page"> 
+  <div class="wave">
+
+    <svg width="1920px" height="265px" viewBox="0 0 1920 265" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Apple-TV" transform="translate(0.000000, -402.000000)" fill="#FFFFFF">
+          <path d="M0,439.134243 C175.04074,464.89273 327.944386,477.771974 458.710937,477.771974 C654.860765,477.771974 870.645295,442.632362 1205.9828,410.192501 C1429.54114,388.565926 1667.54687,411.092417 1920,477.771974 L1920,667 L1017.15166,667 L0,667 L0,439.134243 Z" id="Path"></path>
+        </g>
+      </g>
+    </svg>
+  </div>
+
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-12">
+        <div class="row justify-content-center">
+          <div class="col-md-7 text-center hero-text">
+            <h1 data-aos="fade-up" data-aos-delay="" class="text-uppercase text-warning" style="letter-spacing: 2px;">category - {{category}}</h1>
+            <p class="mb-5" data-aos="fade-up" data-aos-delay="100"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section> {% endcomment %}
+{% comment %} 
+<section class="section">
+  <div class="container">
+    <div class="row mb-5">
+      
+      {% for post in blogs %}
+      <div class="col-md-4">
+        <div class="post-entry">
+          <a href="blog-single.html" class="d-block mb-4">
+            <img src="{{post.featured_image.url}}" alt="{{post.title}}" class="img-fluid">
+          </a>
+          <div class="post-text">
+            <span class="post-meta">{{post.created_at | timesince}} ago by {{post.author}}</a></span>
+            <h3 style="color:black" ><a href="{% url 'post_by_slug' post.slug %}">{{post.title}}</a></h3>
+            <p>{{post.short_description | truncatewords:20}}</p>
+            <p><a href="#" class="readmore">Read more</a></p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    
+      <h2> No Posts in this Category  </h2>
+   
+
+      
+    </div>
+  </div>
+</section> {% endcomment %}
+{% endblock %}

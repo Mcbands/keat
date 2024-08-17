@@ -1,0 +1,196 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!doctype html>
+<html lang="en">
+<head>
+   
+    <!--====== Required meta tags ======-->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!--====== Title ======-->
+    <title>Keres Engineering</title>
+    
+    <!--====== Favicon Icon ======-->
+    <link rel="shortcut icon" href="images/favicon.png" type="image/png">
+
+    <!--====== Slick css ======-->
+    <link rel="stylesheet" href="{% static 'edulook/css/slick.css' %}">
+
+    <!--====== Animate css ======-->
+    <link rel="stylesheet" href="{% static 'edulook/css/animate.css' %}">
+    
+    <!--====== Nice Select css ======-->
+    <link rel="stylesheet" href="{% static 'edulook/css/nice-select.css' %}">
+    
+    <!--====== Nice Number css ======-->
+    <link rel="stylesheet" href="{% static 'edulook/css/jquery.nice-number.min.css' %}">
+
+    <!--====== Magnific Popup css ======-->
+    <link rel="stylesheet" href="{% static 'edulook/css/magnific-popup.css' %}">
+
+    <!--====== Bootstrap css ======-->
+    <link rel="stylesheet" href="{% static 'edulook/css/bootstrap.min.css' %}">
+    
+    <!--====== Fontawesome css ======-->
+    <link rel="stylesheet" href="{% static 'edulook/css/font-awesome.min.css' %}">
+    
+    <!--====== Default css ======-->
+    <link rel="stylesheet" href="{% static 'edulook/css/default.css' %}">
+    
+    <!--====== Style css ======-->
+    <link rel="stylesheet" href="{% static 'edulook/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'edulook/css/bootstrap-icons.css' %}">
+
+    
+    <!--====== Responsive css ======-->
+    <link rel="stylesheet" href="{% static 'edulook/css/responsive.css' %}">
+    <link rel="stylesheet" href="{% static 'accordion/css/style.css' %}">
+
+    <link href="{% static 'accordion/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'accordion/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'accordion/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+
+<body>
+
+
+<section id="count-down-part" class="bg_cover pt-70 pb-120" data-overlay="8" style="background-image: url('{% static 'edulook/images/electricaltech1.jpg' %}')">
+    <div class="container">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-lg-6">
+                <div class="count-down-cont pt-50" >
+                  <img src="{% static 'assets/img/logo.png' %}" alt="Logo">
+
+                  {% comment %} <h2>Login Now</h2> {% endcomment %}
+                  <div></div>
+                    <div></div>
+                </div> <!-- count down cont -->
+            </div>
+            <div class="col-lg-5 offset-lg-1 col-md-8">
+                <div class="category-form category-form-3 pt-50">
+                    <div class="form-title text-center"  style="background: #2d71a1; background: linear-gradient(-45deg, #1391a5, #274685); color: #fff; box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.15);">
+                        <span><i class="bi bi-mortarboard" style="color:black;"></i></span>
+                        <h2>Register new account</h2>
+                    </div>
+                    <div class="main-form">
+                        <form action="{% url 'register_user' %}" method="POST" class="row g-3 needs-validation" novalidate>
+                            {% csrf_token %}
+                            {% if messages %}
+                                {% for message in messages %}
+                                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                                    <strong>{{ message }}</strong>.
+                                </div>
+                                {% endfor %}
+                            {% endif %}
+                            <div class="form-group">
+            
+                                {{ form.username|as_crispy_field }}
+                            </div>
+                            <div class="form-group">
+
+                                {{ form.email|as_crispy_field }}
+                            </div>
+                            <div class="form-group">
+              
+                                <div class="input-group">
+                                    {{ form.password1|as_crispy_field }}
+                                    <span class="input-group-text" id="togglePassword1">
+                                        <i id="togglePassword1" class="fa fa-eye"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                              
+                                <div class="input-group">
+                                    {{ form.password2|as_crispy_field }}
+                                    <span class="input-group-text" id="togglePassword2">
+                                        <i class="fa fa-eye"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="remember" value="true" id="rememberMe">
+                                <label class="form-check-label" for="rememberMe">Remember me</label><br><br>
+                                <p class="small mb-0">Already have an account? <a href="{% url 'login_user' %}">Log in</a></p>
+                            </div>
+                            <div class="singel-form">
+                                <button class="main-btn" type="submit">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div> <!-- category form -->
+            </div>
+        </div> <!-- row -->
+    </div> <!-- container -->
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const togglePassword1 = document.getElementById("togglePassword1");
+    const passwordInput1 = document.querySelector("#id_password1");
+
+    const togglePassword2 = document.getElementById("togglePassword2");
+    const passwordInput2 = document.querySelector("#id_password2");
+
+    togglePassword1.addEventListener("click", function () {
+        const type = passwordInput1.type === "password" ? "text" : "password";
+        passwordInput1.type = type;
+        this.querySelector("i").classList.toggle("fa-eye");
+        this.querySelector("i").classList.toggle("fa-eye-slash");
+    });
+
+    togglePassword2.addEventListener("click", function () {
+        const type = passwordInput2.type === "password" ? "text" : "password";
+        passwordInput2.type = type;
+        this.querySelector("i").classList.toggle("fa-eye");
+        this.querySelector("i").classList.toggle("fa-eye-slash");
+    });
+});
+</script>
+
+
+<!--====== jquery js ======-->
+<script src="{% static 'edulook/js/vendor/modernizr-3.6.0.min.js' %}"></script>
+<script src="{% static 'edulook/js/vendor/jquery-1.12.4.min.js' %}"></script>
+
+<!--====== Bootstrap js ======-->
+<script src="{% static 'edulook/js/bootstrap.min.js' %}"></script>
+
+<!--====== Slick js ======-->
+<script src="{% static 'edulook/js/slick.min.js' %}"></script>
+
+<!--====== Magnific Popup js ======-->
+<script src="{% static 'edulook/js/jquery.magnific-popup.min.js' %}"></script>
+
+<!--====== Counter Up js ======-->
+<script src="{% static 'edulook/js/waypoints.min.js' %}"></script>
+<script src="{% static 'edulook/js/jquery.counterup.min.js' %}"></script>
+
+<!--====== Nice Select js ======-->
+<script src="{% static 'edulook/js/jquery.nice-select.min.js' %}"></script>
+
+<!--====== Nice Number js ======-->
+<script src="{% static 'edulook/js/jquery.nice-number.min.js' %}"></script>
+
+<!--====== Count Down js ======-->
+<script src="js/jquery.countdown.min.js' %}"></script>
+
+<!--====== Validator js ======-->
+<script src="{% static 'edulook/js/validator.min.js' %}"></script>
+
+<!--====== Main js ======-->
+<script src="{% static 'edulook/js/main.js' %}"></script>
+<script src="{% static 'accordion/js/main.js' %}"></script>
+<script src="{% static 'accordion/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<!--====== Map js ======-->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDC3Ip9iVC0nIxC6V14CKLQ1HZNF_65qEQ"></script>
+<script src="js/map-script.js' %}"></script>
+
+
+</body>
+</html>
